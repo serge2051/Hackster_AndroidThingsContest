@@ -221,7 +221,6 @@ public class PubSubPublisher {
 
                             CustomMessage newMsg = new CustomMessage(resString);
 
-
                             if (!newMsg.mSource.equals(mDevice))
                                 newMsg.NotifyDevice();
 

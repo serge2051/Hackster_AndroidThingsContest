@@ -132,7 +132,7 @@ public class Fragment_tab_camera extends Fragment {
                             log.child("timestamp").setValue(ServerValue.TIMESTAMP);
 
                             if (textView_fire_1 != null)
-                                if (annotations.containsKey("flame"))
+                                if ((annotations.containsKey("flame")) && (annotations["flame"] > 0.75))
                                 {
                                     runOnUiThread(new Runnable() {
                                         public void run() {
