@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "ru.hpcnt.androidthingscontest"
+        minSdkVersion 26
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+
+        debug {
+            buildConfigField "String", "PROJECT_ID", '"<YOUR_PROJECT_ID>"'
+            buildConfigField "String", "PUBSUB_TOPIC", '"<YOUR_TOPIC_ID>"'
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile ('com.google.http-client:google-http-client-gson:1.23.0'){
+        exclude module: 'httpclient'
+    }
+
+    compile('com.google.api-client:google-api-client-android:1.23.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    compile('com.google.apis:google-api-services-pubsub:v1-rev362-1.23.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:26.+'
+    compile 'com.google.android.gms:play-services:11.4.2'
+    compile 'com.google.android.gms:play-services-vision:11.4.2'
+    compile 'com.google.firebase:firebase-core:11.4.2'
+    /*compile 'com.google.firebase:firebase-auth:11.4.2'*/
+    compile 'com.google.firebase:firebase-database:11.4.2'
+    compile 'com.google.apis:google-api-services-vision:v1-rev22-1.22.0'
+    compile 'com.google.firebase:firebase-crash:11.4.2'
+    testCompile 'org.testng:testng:6.9.6'
+    testCompile 'junit:junit:4.12'
+    provided 'com.google.android.things:androidthings:0.5.1-devpreview'
+}
+
+apply plugin: 'com.google.gms.google-services'
